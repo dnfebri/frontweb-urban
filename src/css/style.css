@@ -11,3 +11,7 @@
 @import 'additional-styles/theme.css';
 
 @import 'tailwindcss/utilities';
+
+.is-input {
+  @apply -top-6 scale-75 opacity-100
+}

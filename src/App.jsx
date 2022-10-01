@@ -1,34 +1,25 @@
-import React, { useEffect } from 'react';
-import {
-  Routes,
-  Route,
-  useLocation
-} from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './app/store';
+import axios from "axios";
 
 import './css/style.css';
+// import './charts/ChartjsConfig';
+import Router from './router';
 
-import './charts/ChartjsConfig';
-
-// Import pages
-import Dashboard from './pages/Dashboard';
+axios.defaults.withCredentials = true;
 
 function App() {
 
-  const location = useLocation();
-
-  useEffect(() => {
-    document.querySelector('html').style.scrollBehavior = 'auto'
-    window.scroll({ top: 0 })
-    document.querySelector('html').style.scrollBehavior = ''
-  }, [location.pathname]); // triggered on route change
-
   return (
-    <>
-      <Routes>
-        <Route exact path="/" element={<Dashboard />} />
-      </Routes>
-    </>
-  );
+    <BrowserRouter>
+      <Provider store={store}>
+        <Router/>
+      </Provider>
+    </BrowserRouter>
+  )
+  
 }
 
 export default App;

@@ -5,7 +5,7 @@ function SidebarLinkGroup({
   activecondition,
 }) {
 
-  const [open, setOpen] = useState(activecondition);
+  const [open, setOpen] = useState(true);
 
   const handleClick = () => {
     setOpen(!open);
