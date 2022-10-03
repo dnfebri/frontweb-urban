@@ -1,11 +1,27 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import LogoUA from "../logo_ua.png"
 
 import SidebarLinkGroup from './SidebarLinkGroup';
 import { MdMoveToInbox, MdDashboard } from "react-icons/md";
+import { useDispatch, useSelector } from 'react-redux';
+import { LogOut, reset } from '../features/authSlice';
+import Cookies from 'js-cookie';
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user } = useSelector(
+    (state) => state.auth
+  );
+
+  const Logout = () => {
+    dispatch(LogOut());
+    dispatch(reset());
+    Cookies.remove('token');
+    navigate('/login');
+  }
+
   const location = useLocation();
   const { pathname } = location;
 
@@ -310,6 +326,22 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Inbox</span>
                   </div>
                 </NavLink>
+              </li>
+              <li className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${pathname === '/inbox' && 'bg-slate-900'}`}>
+                <NavLink
+                  end
+                  to="/inbox"
+                  className={({ isActive }) =>
+                    'block text-slate-400 hover:text-slate-200 transition duration-150 truncate ' + (isActive ? '!text-indigo-500' : '')
+                  }
+                >
+                </NavLink>
+                <button onClick={Logout}>                
+                  <div className="flex items-center">
+                    <i className="text-2xl"><MdMoveToInbox/></i>
+                    <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">LogOut</span>
+                  </div>
+                </button>
               </li>
             </ul>
           </div>

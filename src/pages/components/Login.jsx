@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import { LoginUser, reset } from '../../features/authSlice';
 
 import LogoUA from "../../logo_ua.png";
 import InputModel1 from './InputModel1';
+import axios from 'axios';
 
 function Login() {
 
@@ -25,9 +27,13 @@ function Login() {
 
   useEffect(() => {
     if (token || isSuccess) {
+      // console.log(token);
+      // console.log(isSuccess);
+      Cookies.set('token', token);
+      axios.defaults.headers.token = token
       navigate("/");
+      dispatch(reset());
     }
-    dispatch(reset());
   },[token, isSuccess, dispatch, navigate]);
 
   function Auth(e) {
@@ -37,8 +43,8 @@ function Login() {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      <div className="bg-neutral-200 p-4 rounded-lg">
+    <div className="flex justify-center items-center min-h-screen bg-neutral-200">
+      <div className="bg-white p-4 rounded-lg">
         <img src={LogoUA} alt="Logo" className="invert w-20 mx-auto" />
         <form onSubmit={Auth}>
           {isError && <p className="text-center mt-2">{massage}</p>}

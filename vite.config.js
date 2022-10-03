@@ -1,6 +1,10 @@
 import { defineConfig } from 'vite'
 import postcss from './postcss.config.js'
 import react from '@vitejs/plugin-react'
+import dotenv from "dotenv";
+dotenv.config();
+// import dns from 'dns';
+// dns.setDefaultResultOrder('verbatim')
 
 // https://vitejs.dev/config/
 export default defineConfig({

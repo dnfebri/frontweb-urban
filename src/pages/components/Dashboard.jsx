@@ -1,9 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getMe } from '../../features/authSlice'; 
 
 import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
+import Cookies from 'js-cookie';
 
 function Dashboard({children}) {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const {isError} = useSelector((state => state.auth));
+  console.log(useSelector((state => state.auth)));
+  
+  const [token] = useState(Cookies.get('token'));
+  
+  useEffect(()=>{
+    console.log(token);
+    if(!token){
+      navigate("/login");
+    } else {
+      dispatch(getMe());
+    }
+  }, [dispatch, token]);
+
+  useEffect(()=>{
+    if(isError){
+      navigate("/login");
+    }
+  }, [isError, navigate]);
+// console.log(dispatch(getMe()));
+
   
   const [sidebarOpen, setSidebarOpen] = useState(false);
 

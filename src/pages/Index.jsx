@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+
 import Dashboard from './components/Dashboard'
 import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
 import DashboardAvatars from '../partials/dashboard/DashboardAvatars';
