@@ -1,26 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import LogoUA from "../logo_ua.png"
 
 import SidebarLinkGroup from './SidebarLinkGroup';
 import { MdMoveToInbox, MdDashboard } from "react-icons/md";
-import { useDispatch, useSelector } from 'react-redux';
-import { LogOut, reset } from '../features/authSlice';
-import Cookies from 'js-cookie';
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const { user } = useSelector(
-    (state) => state.auth
-  );
-
-  const Logout = () => {
-    dispatch(LogOut());
-    dispatch(reset());
-    Cookies.remove('token');
-    navigate('/login');
-  }
 
   const location = useLocation();
   const { pathname } = location;
@@ -336,12 +321,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                   }
                 >
                 </NavLink>
-                <button onClick={Logout}>                
-                  <div className="flex items-center">
-                    <i className="text-2xl"><MdMoveToInbox/></i>
-                    <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">LogOut</span>
-                  </div>
-                </button>
               </li>
             </ul>
           </div>

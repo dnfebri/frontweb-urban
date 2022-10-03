@@ -11,12 +11,12 @@ function Dashboard({children}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {isError} = useSelector((state => state.auth));
-  console.log(useSelector((state => state.auth)));
+  console.log('Dashboard', useSelector((state => state.auth))); /// INI di akses terus
   
   const [token] = useState(Cookies.get('token'));
   
   useEffect(()=>{
-    console.log(token);
+    // console.log(token);
     if(!token){
       navigate("/login");
     } else {

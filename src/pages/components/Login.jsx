@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import jwt_decode from "jwt-decode";
 import { LoginUser, reset } from '../../features/authSlice';
+import { update } from '../../features/authUserSlice';
 
 import LogoUA from "../../logo_ua.png";
 import InputModel1 from './InputModel1';
@@ -26,9 +28,14 @@ function Login() {
   }
 
   useEffect(() => {
-    if (token || isSuccess) {
-      // console.log(token);
-      // console.log(isSuccess);
+    if (token && isSuccess) {
+      const tokenDecode = token ? jwt_decode(token) : '';
+      const uuid = tokenDecode ? tokenDecode.uuid : '';
+      const name = tokenDecode ? tokenDecode.name : '';
+      const email = tokenDecode ? tokenDecode.email : '';
+      const roleId = tokenDecode ? tokenDecode.roleId : '';
+      const role = tokenDecode ? tokenDecode.role : '';
+      dispatch(update({uuid, name, email, roleId, role}));
       Cookies.set('token', token);
       axios.defaults.headers.token = token
       navigate("/");

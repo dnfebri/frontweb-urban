@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
 const initialState = {
   token: null,
@@ -26,7 +26,7 @@ export const LoginUser = createAsyncThunk("user/LoginUser", async(user, thunkAPI
 });
 
 export const getMe = createAsyncThunk("user/getMe", async(_, thunkAPI) => {
-  console.log(axios.defaults.headers);
+  // console.log(axios.defaults.headers);
   try {
     const response = await axios.get( process.env.API_URL_APP + 'auth/me');
     return response.data;
@@ -65,14 +65,17 @@ export const authSlice = createSlice({
 
     // get User
     builder.addCase(getMe.pending, (state, action) => {
+      // console.log(action);
       state.isLoading = true;
     });
     builder.addCase(getMe.fulfilled, (state, action) => {
+      // console.log(action);
       state.isLoading = false;
       state.isSuccess = true;
       state.token = action.payload;
     });
     builder.addCase(getMe.rejected, (state, action) => {
+      // console.log(action);
       state.isLoading = false;
       state.isError = true;
       state.massage = action.payload;
