@@ -11,7 +11,7 @@ function Dashboard({children}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {isError} = useSelector((state => state.auth));
-  console.log('Dashboard', useSelector((state => state.auth))); /// INI di akses terus
+  // console.log('Dashboard', useSelector((state => state.auth))); /// INI di akses terus
   
   const [token] = useState(Cookies.get('token'));
   
@@ -47,7 +47,7 @@ function Dashboard({children}) {
         <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
         <main>
-          <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">
+          <div className="px-1 sm:px-2 lg:px-4 py-2 w-full max-w-9xl mx-auto">
             {children}
           </div>
         </main>

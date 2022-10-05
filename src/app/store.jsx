@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from "../features/authSlice";
-import authUserSlice from '../features/authUserSlice';
+import userReducer from "../features/userSlice";
+import roleReducer from "../features/roleSlice";
 
 export default configureStore({
   reducer: {
     auth: authReducer,
-    authUser: authUserSlice
+    users: userReducer,
+    roles: roleReducer
   },
 })

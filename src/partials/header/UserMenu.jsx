@@ -12,9 +12,8 @@ function UserMenu() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { name, email, role } = useSelector(
-    (state) => state.authUser
+    (state) => state.auth.userState
   );
-  // console.log("usermenu", useSelector((state) => state.authUser));
 
   const Logout = () => {
     dispatch(LogOut());

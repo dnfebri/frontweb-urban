@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import jwt_decode from "jwt-decode";
-import { LoginUser, reset } from '../../features/authSlice';
-import { update } from '../../features/authUserSlice';
+import { LoginUser, reset, update } from '../../features/authSlice';
 
 import LogoUA from "../../logo_ua.png";
 import InputModel1 from './InputModel1';
@@ -15,7 +14,7 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { token, isError, isSuccess, isLoading, massage } = useSelector(
-    (state) => state.auth
+    (state) => state.auth.authState
   );
   
   // const [email, setEmail] = useState("");
