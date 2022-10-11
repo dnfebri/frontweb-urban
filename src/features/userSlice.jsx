@@ -4,7 +4,7 @@ import axios from "axios";
 export const getUsers = createAsyncThunk("user/GetUser", async(_, thunkAPI) => {
   try {
     const response = await axios.get( process.env.API_URL_APP + 'users');
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
   } catch (error) {
     if(error.response){

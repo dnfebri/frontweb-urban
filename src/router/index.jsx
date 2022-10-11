@@ -10,6 +10,8 @@ import RoleAdd from '../pages/user/RoleAdd';
 import RoleEdit from '../pages/user/RoleEdit';
 import User from '../pages/user/Index';
 import Login from '../pages/components/Login';
+import BackInShapev2 from '../pages/events/BackInShapev2';
+import BackInShapev2Detail from '../pages/events/BackInShapev2Detail';
 
 function Router() {
   const location = useLocation();
@@ -33,6 +35,13 @@ function Router() {
           <Route index element={<Role />} />
           <Route path='add' element={<RoleAdd />} />
           <Route path=':id' element={<RoleEdit />} />
+        </Route>
+        <Route path="/events" >
+          <Route index element={<BackInShapev2 />} />
+          <Route path="back-in-shape-v2" >
+            <Route index element={<BackInShapev2 />} />
+            <Route path=':id' element={<BackInShapev2Detail />} />
+          </Route>
         </Route>
         {/* <Route path="/role/edit" element={<RoleEdit />} /> */}
       </Routes>

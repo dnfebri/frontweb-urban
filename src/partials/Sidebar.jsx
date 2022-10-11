@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import LogoUA from "../logo_ua.png"
 
 import SidebarLinkGroup from './SidebarLinkGroup';
-import { MdMoveToInbox, MdDashboard, MdAdminPanelSettings } from "react-icons/md";
+import { MdMoveToInbox, MdDashboard, MdAdminPanelSettings, MdEmojiEvents } from "react-icons/md";
 
 function Sidebar({ sidebarOpen, setSidebarOpen }) {
 
@@ -160,7 +160,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center">
-                            <i className={`text-2xl ${(pathname === '/user' || pathname.includes('role')) && 'text-indigo-600'}`}><MdAdminPanelSettings/></i>
+                            <i className={`text-2xl text-slate-400 ${(pathname === '/user' || pathname.includes('role')) && 'text-indigo-600'}`}><MdAdminPanelSettings/></i>
                             <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
                               Administrator
                             </span>
@@ -207,7 +207,6 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                   );
                 }}
               </SidebarLinkGroup>
-              
             </ul>
           </div>
           <div>
@@ -218,6 +217,57 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
               <span className="lg:hidden lg:sidebar-expanded:block 2xl:block">Pages</span>
             </h3>
             <ul className="mt-3">
+              {/* Promo */}
+              <SidebarLinkGroup activecondition={pathname === '/promo' || pathname.includes('events')}>
+                {(handleClick, open) => {
+                  return (
+                    <React.Fragment>
+                      <a
+                        href="#0"
+                        className={`block text-slate-200 hover:text-white truncate transition duration-150 ${
+                          pathname === '/promo' || pathname.includes('events') && 'hover:text-slate-200'
+                        }`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          sidebarExpanded ? handleClick() : setSidebarExpanded(true);
+                        }}
+                      >
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center">
+                            <i className={`text-2xl text-slate-400 ${(pathname === '/promo' || pathname.includes('events')) && 'text-indigo-600'}`}><MdEmojiEvents/></i>
+                            <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                              Events
+                            </span>
+                          </div>
+                          {/* Icon */}
+                          <div className="flex shrink-0 ml-2">
+                            <svg className={`w-3 h-3 shrink-0 ml-1 fill-current text-slate-400 ${open && 'rotate-180'}`} viewBox="0 0 12 12">
+                              <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
+                            </svg>
+                          </div>
+                        </div>
+                      </a>
+                      <div className="lg:hidden lg:sidebar-expanded:block 2xl:block">
+                        <ul className={`pl-9 mt-1 ${!open && 'hidden'}`}>
+                          <li className="mb-1 last:mb-0">
+                            <NavLink
+                              end
+                              to="/events/back-in-shape-v2"
+                              className={({ isActive }) =>
+                                'block text-slate-400 hover:text-slate-200 transition duration-150 truncate ' + (isActive ? '!text-indigo-500' : '')
+                              }
+                            >
+                              <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                Back In Shape v2
+                              </span>
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </div>
+                    </React.Fragment>
+                  );
+                }}
+              </SidebarLinkGroup>
               {/* Tasks */}
               <SidebarLinkGroup activecondition={pathname === '/list' || pathname.includes('tasks')}>
                 {(handleClick, open) => {
@@ -318,6 +368,10 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     'block text-slate-400 hover:text-slate-200 transition duration-150 truncate ' + (isActive ? '!text-indigo-500' : '')
                   }
                 >
+                <div className="flex items-center">
+                  <i className="text-2xl"><MdMoveToInbox/></i>
+                  <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Inbox2</span>
+                </div>
                 </NavLink>
               </li>
             </ul>
