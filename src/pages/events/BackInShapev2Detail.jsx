@@ -8,11 +8,13 @@ function BackInShapev2Detail() {
   const navigate  = useNavigate();
   const {id} = useParams();
   const data = useSelector((state) => backInShapeSelector.selectById(state, id));
+  // const data = useSelector((state) => backInShapeSelector.selectEntities((state) => entities));
+  // console.log(data);
 
   return (
     <Dashboard>
       <div className="mx-4 mb-3">
-        <button onClick={() => navigate(-1)} className="py-0.5 px-4 bg-neutral-300 hover:bg-neutral-400 text-black rounded-lg">{`<- Back`}</button>
+        <button onClick={() => navigate(-1)} className="py-0.5 px-4 bg-neutral-300 hover:bg-neutral-400 text-black/70 font-bold rounded-lg">{`<- Back`}</button>
       </div>
       <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-md border border-slate-200">
         <header className="px-5 py-4 border-b border-slate-100">

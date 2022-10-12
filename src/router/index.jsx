@@ -12,6 +12,8 @@ import User from '../pages/user/Index';
 import Login from '../pages/components/Login';
 import BackInShapev2 from '../pages/events/BackInShapev2';
 import BackInShapev2Detail from '../pages/events/BackInShapev2Detail';
+import BisPay from '../pages/events/proses/BisPay';
+import BisPayDetail from '../pages/events/proses/BisPayDetail';
 
 function Router() {
   const location = useLocation();
@@ -41,6 +43,8 @@ function Router() {
           <Route path="back-in-shape-v2" >
             <Route index element={<BackInShapev2 />} />
             <Route path=':id' element={<BackInShapev2Detail />} />
+            <Route path='proses' element={<BisPay />} />
+            <Route path='proses/:id' element={<BisPayDetail />} />
           </Route>
         </Route>
         {/* <Route path="/role/edit" element={<RoleEdit />} /> */}

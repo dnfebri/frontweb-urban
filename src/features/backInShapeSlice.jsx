@@ -3,8 +3,8 @@ import axios from "axios";
 
 export const getBackInShapes = createAsyncThunk("backInShape/getBackInShape", async(_, thunkAPI) => {
   try {
-    // const response = await axios.get('https://klik.urbanathletes.co.id/api/v2/back-in-shapes');
-    const response = await axios.get('http://127.0.0.1:8000/api/v2/back-in-shapes');
+    const response = await axios.get('https://klik.urbanathletes.co.id/api/v2/back-in-shapes');
+    // const response = await axios.get('http://127.0.0.1:8000/api/v2/back-in-shapes');
     return response.data;
   } catch (error) {
     console.log(error);

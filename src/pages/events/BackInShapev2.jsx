@@ -17,8 +17,9 @@ function BackInShapev2() {
   return (
     <Dashboard>
       <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-md border border-slate-200">
-        <header className="px-5 py-4 border-b border-slate-100">
+        <header className="px-5 py-4 border-b border-slate-100 flex justify-between items-center">
           <h2 className="font-semibold text-slate-800">Back In Shape V2</h2>
+          <Link to={`/events/back-in-shape-v2/proses`} className="mx-0.5 py-1 px-4 rounded-md text-black font-black bg-green-500 hover:bg-green-600">{'List Proses ->'}</Link>
         </header>
         <div className="p-3">
           {/* Table */}
