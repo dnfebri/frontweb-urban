@@ -6,7 +6,7 @@ import Dashboard from '../components/Dashboard'
 
 function Role({children} = '') {
   const dispatch = useDispatch();
-  const roles = useSelector(roleSelector.selectAll)
+  const roles = useSelector(roleSelector.selectAll);
 
   useEffect(() => {
     dispatch(getRoles())

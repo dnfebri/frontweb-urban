@@ -67,6 +67,7 @@ const roleSlice = createSlice({
       roleEntity.setAll(state, action.payload)
     },
     [saveRoles.fulfilled]: (state, action) => {
+      console.log('saveRoles.fulfilled', action.payload);
       roleEntity.addOne(state, action.payload.data)
     },
     [updateRoles.fulfilled]: (state, action) => {

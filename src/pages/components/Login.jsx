@@ -50,17 +50,15 @@ function Login() {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-neutral-200">
-      <div className="bg-white p-4 rounded-lg">
+      <div className="bg-white p-4 rounded-lg w-80">
         <img src={LogoUA} alt="Logo" className="invert w-20 mx-auto" />
         <form onSubmit={Auth}>
           {isError && <p className="text-center mt-2">{massage}</p>}
           <div className="mt-4 px-4 pb-4 pt-2 border-t-2 border-neutral-400">
-            {/* <InputModel1 label="Email" type="text" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <InputModel1 label="Password" type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} /> */}
             <InputModel1 label="Email" type="text" name="email" id="email" value={inputs.email || ''} onChange={handleChange} />
             <InputModel1 label="Password" type="password" name="password" id="password" value={inputs.password || ''} onChange={handleChange} />
             <div className="mt-4 py-2">
-              <button type="submit" className="py-1 w-full text-center bg-green-600 text-black font-bold rounded-lg">
+              <button type="submit" className={`py-1 w-full text-center text-black font-bold rounded-lg ${isLoading ? 'bg-green-700' : 'bg-green-600'} `}>
                 {isLoading ? 'Loading...' : "Login"}
               </button>
             </div>

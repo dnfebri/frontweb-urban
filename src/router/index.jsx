@@ -14,6 +14,9 @@ import BackInShapev2 from '../pages/events/BackInShapev2';
 import BackInShapev2Detail from '../pages/events/BackInShapev2Detail';
 import BisPay from '../pages/events/proses/BisPay';
 import BisPayDetail from '../pages/events/proses/BisPayDetail';
+import PersonalTrainer from '../pages/uaweb/personal-trainer/PersonalTrainer';
+import PersonalTrainerAdd from '../pages/uaweb/personal-trainer/PersonalTrainerAdd';
+import PersonalTrainerEdit from '../pages/uaweb/personal-trainer/PersonalTrainerEdit';
 
 function Router() {
   const location = useLocation();
@@ -45,6 +48,13 @@ function Router() {
             <Route path=':id' element={<BackInShapev2Detail />} />
             <Route path='proses' element={<BisPay />} />
             <Route path='proses/:id' element={<BisPayDetail />} />
+          </Route>
+        </Route>
+        <Route path="/uaweb" >
+          <Route path="personal-trainer" >
+            <Route index element={<PersonalTrainer />} />
+            <Route path='add' element={<PersonalTrainerAdd />} />
+            <Route path=':id' element={<PersonalTrainerEdit />} />
           </Route>
         </Route>
         {/* <Route path="/role/edit" element={<RoleEdit />} /> */}

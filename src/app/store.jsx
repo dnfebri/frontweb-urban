@@ -4,6 +4,7 @@ import userReducer from "../features/userSlice";
 import roleReducer from "../features/roleSlice";
 import backInShapeReducer from "../features/backInShapeSlice";
 import bisPayReducer from "../features/bisPaySlice";
+import personalTrainerReducer from "../features/personalTrainerSlice";
 
 export default configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export default configureStore({
     users: userReducer,
     roles: roleReducer,
     backInShapes: backInShapeReducer,
-    bisPays: bisPayReducer
+    personalTrainers: personalTrainerReducer,
+    bisPays: bisPayReducer,
   },
 })
