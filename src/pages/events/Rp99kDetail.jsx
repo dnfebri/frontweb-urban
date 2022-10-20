@@ -1,14 +1,16 @@
 import React from 'react'
 import { useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { backInShapeSelector } from '../../features/backInShapeSlice';
+import { rp99kSelector } from '../../features/rp99kSlice';
 import Dashboard from '../components/Dashboard'
 
-function BackInShapev2Detail() {
+function Rp99kDetail() {
   const navigate  = useNavigate();
   const {id} = useParams();
-  const data = useSelector((state) => backInShapeSelector.selectById(state, id));
-  if (!data) navigate('/events/back-in-shape-v2');
+  const data = useSelector((state) => rp99kSelector.selectById(state, id));
+  if (!data) navigate('/events/99k');
+  const dateJoin = new Date(data.created_at);
+  const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   return (
     <Dashboard>
@@ -16,10 +18,14 @@ function BackInShapev2Detail() {
         <button onClick={() => navigate(-1)} className="py-0.5 px-4 bg-neutral-300 hover:bg-neutral-400 text-black/70 font-bold rounded-lg">{`<- Back`}</button>
       </div>
       <div className="col-span-full xl:col-span-8 bg-white dark:bg-neutral-900 shadow-lg rounded-md border border-slate-200">
-        <header className="px-5 py-4 border-b border-slate-100">
-          <h2 className="font-semibold text-slate-800 dark:text-slate-200">Detail Join Back In Shape V2</h2>
+        <header className="px-5 py-4 border-b border-slate-100 flex justify-between items-center">
+          <h2 className="font-semibold text-slate-800 dark:text-slate-200 text-xl">Rp99K Detail</h2>
+          <p className="font-black">{data ? data.order_id : ''}</p>
         </header>
-        <div className="p-4 text-slate-900 dark:text-slate-100">
+        <div className="py-3 px-2">
+          <div className="text-right mb-2 px-2">
+            <p>Register : {data ? `${dateJoin.getDate()} - ${months[dateJoin.getMonth()-1]} - ${dateJoin.getFullYear()}` : ''}</p>
+          </div>
           <table className="table-auto min-w-full">
             <tbody>
               <tr>
@@ -39,20 +45,20 @@ function BackInShapev2Detail() {
                 <td className="p-2">: {data ? data.email : ''}</td>
               </tr>
               <tr>
-                <td className="p-2">Alamat</td>
-                <td className="p-2">: {data ? data.alamat : ''}</td>
+                <td className="p-2">Promo Name</td>
+                <td className="p-2">: {data ? data.order_name : ''}</td>
               </tr>
               <tr>
-                <td className="p-2">Influenser</td>
-                <td className="p-2">: {data ? data.kdRef : ''} - {data ? data.kdRefInfluens : ''}</td>
-              </tr>
-              <tr>
-                <td className="p-2">Event Name</td>
-                <td className="p-2">: {data ? data.promoName : ''}</td>
+                <td className="p-2">Payment Type</td>
+                <td className="p-2">: {data ? data.payment_type : ''}</td>
               </tr>
               <tr>
                 <td className="p-2">Harga</td>
                 <td className="p-2">: {data ? data.harga : ''}</td>
+              </tr>
+              <tr>
+                <td className="p-2">Status</td>
+                <td className="p-2">: {data ? data.status : ''}</td>
               </tr>
             </tbody>
           </table>
@@ -62,4 +68,4 @@ function BackInShapev2Detail() {
   )
 }
 
-export default BackInShapev2Detail
+export default Rp99kDetail

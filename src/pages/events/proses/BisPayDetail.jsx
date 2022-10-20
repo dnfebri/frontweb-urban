@@ -8,7 +8,6 @@ function BisPayDetail() {
   const navigate  = useNavigate();
   const {id} = useParams();
   const data = useSelector((state) => bisPaySelector.selectById(state, id));
-  console.log(data);
 
   return (
     <Dashboard>
@@ -24,39 +23,39 @@ function BisPayDetail() {
             <tbody>
               <tr>
                 <td className="p-2">Order Id</td>
-                <td className="p-2 font-bold">: {data.order_id}</td>
+                <td className="p-2 font-bold">: {data ? data.order_id : ''}</td>
               </tr>
               <tr>
                 <td className="p-2">Nama</td>
-                <td className="p-2">: {data.nama}</td>
+                <td className="p-2">: {data ? data.nama : ''}</td>
               </tr>
               <tr>
                 <td className="p-2">Order Name</td>
-                <td className="p-2">: {data.order_name}</td>
+                <td className="p-2">: {data ? data.order_name : ''}</td>
               </tr>
               <tr>
                 <td className="p-2">Email</td>
-                <td className="p-2">: {data.email}</td>
+                <td className="p-2">: {data ? data.email : ''}</td>
               </tr>
               <tr>
                 <td className="p-2">Influenser</td>
-                <td className="p-2">: {data.kdRef} - {data.kdRefName}</td>
+                <td className="p-2">: {data ? data.kdRef : ''} - {data ? data.kdRefName : ''}</td>
               </tr>
               <tr>
                 <td className="p-2">Gross</td>
-                <td className="p-2">: {data.gross_amount}</td>
+                <td className="p-2">: {data ? data.gross_amount : ''}</td>
               </tr>
               <tr>
                 <td className="p-2">Status</td>
-                <td className="p-2 flex">: <p className={`mx-2 px-2 rounded-md max-w-min ${data.status == 'settlement' || data.status == 'deny' ? 'bg-green-400' : 'bg-yellow-400' }`}>{data.status}</p></td>
+                <td className="p-2 flex">: <p className={`mx-2 px-2 rounded-md max-w-min ${data ? data.status : '' == 'settlement' || data ? data.status : '' == 'deny' ? 'bg-green-400' : 'bg-yellow-400' }`}>{data ? data.status : ''}</p></td>
               </tr>
               <tr>
                 <td className="p-2">Payment Type</td>
-                <td className="p-2">: {data.payment_type}</td>
+                <td className="p-2">: {data ? data.payment_type : ''}</td>
               </tr>
               <tr>
                 <td className="p-2">Transaction id</td>
-                <td className="p-2">: {data.transaction_id}</td>
+                <td className="p-2">: {data ? data.transaction_id : ''}</td>
               </tr>
             </tbody>
           </table>

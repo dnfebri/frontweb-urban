@@ -17,6 +17,8 @@ import BisPayDetail from '../pages/events/proses/BisPayDetail';
 import PersonalTrainer from '../pages/uaweb/personal-trainer/PersonalTrainer';
 import PersonalTrainerAdd from '../pages/uaweb/personal-trainer/PersonalTrainerAdd';
 import PersonalTrainerEdit from '../pages/uaweb/personal-trainer/PersonalTrainerEdit';
+import Rp99k from '../pages/events/Rp99k';
+import Rp99kDetail from '../pages/events/Rp99kDetail';
 
 function Router() {
   const location = useLocation();
@@ -41,15 +43,21 @@ function Router() {
           <Route path='add' element={<RoleAdd />} />
           <Route path=':id' element={<RoleEdit />} />
         </Route>
+
         <Route path="/events" >
-          <Route index element={<BackInShapev2 />} />
+          <Route index element={<Rp99k />} />
           <Route path="back-in-shape-v2" >
             <Route index element={<BackInShapev2 />} />
             <Route path=':id' element={<BackInShapev2Detail />} />
             <Route path='proses' element={<BisPay />} />
             <Route path='proses/:id' element={<BisPayDetail />} />
           </Route>
+          <Route path="99k" >
+            <Route index element={<Rp99k />} />
+            <Route path=':id' element={<Rp99kDetail />} />
+          </Route>
         </Route>
+
         <Route path="/uaweb" >
           <Route path="personal-trainer" >
             <Route index element={<PersonalTrainer />} />

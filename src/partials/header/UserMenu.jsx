@@ -51,9 +51,9 @@ function UserMenu() {
     localStorage.setItem('dark-mode', isDarkMode);
     const html = window.document.documentElement;
     if(isDarkMode) {
-      html.classList.add('dark')
+      html.classList.add('dark');
     } else {
-      html.classList.remove('dark')
+      html.classList.remove('dark');
     }
   })
   
@@ -108,9 +108,9 @@ function UserMenu() {
           <ul>
             <li>
               <div className="px-3 py-1">
-                <label htmlFor="purple-toggle" className="space-x-2 flex items-center justify-start text-sm">
+                <label htmlFor="dark-mode" className="space-x-2 flex items-center justify-start text-sm">
                   <div className="inline-flex relative items-center cursor-pointer">
-                    <input type="checkbox" value="" id="purple-toggle" className="sr-only peer" onChange={darkmode}/>
+                    <input type="checkbox" value="" id="dark-mode" className="sr-only peer" onChange={darkmode} />
                     <div className="w-9 h-5 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-focus:ring-4 peer-focus:ring-indigo-300 dark:peer-focus:ring-indigo-800 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all dark:border-gray-600 peer-checked:bg-indigo-600"></div>
                   </div>
                   <span>Dark Mode</span>

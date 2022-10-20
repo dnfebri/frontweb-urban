@@ -16,9 +16,9 @@ function BackInShapev2() {
 
   return (
     <Dashboard>
-      <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-md border border-slate-200">
+      <div className="col-span-full xl:col-span-8 bg-white dark:bg-neutral-900 shadow-lg rounded-md border border-slate-200">
         <header className="px-5 py-4 border-b border-slate-100 flex justify-between items-center">
-          <h2 className="font-semibold text-slate-800">Back In Shape V2</h2>
+          <h2 className="font-semibold text-slate-800 dark:text-slate-200">Back In Shape V2</h2>
           <Link to={`/events/back-in-shape-v2/proses`} className="mx-0.5 py-1 px-4 rounded-md text-black font-black bg-green-500 hover:bg-green-600">{'List Proses ->'}</Link>
         </header>
         <div className="p-3">
@@ -26,7 +26,7 @@ function BackInShapev2() {
           <div className="overflow-x-auto">
             <table className="table-auto w-full">
               {/* Table header */}
-              <thead className="text-xs uppercase text-slate-400 bg-slate-50 rounded-sm">
+              <thead className="text-xs uppercase text-slate-400 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 rounded-sm">
                 <tr>
                   <th className="p-2">
                     <div className="font-semibold text-left">Kode</div>
@@ -49,12 +49,12 @@ function BackInShapev2() {
                 </tr>
               </thead>
               {/* Table body */}
-              <tbody className="text-sm font-medium divide-y divide-slate-100">
+              <tbody className="text-sm font-medium divide-y divide-slate-100 text-slate-900 dark:text-slate-100">
                 {dataBis.map((row, index) => (
                   <tr key={index}>
                     <td className="py-4 px-2">
                       <div className="flex items-center">
-                        <div className="text-slate-800">{row.kode}</div>
+                        <p>{row.kode}</p>
                       </div>
                     </td>
                     <td className="py-4 px-2">

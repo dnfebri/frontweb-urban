@@ -17,16 +17,16 @@ function BisPay() {
       <div className="mx-4 mb-3">
         <Link to={`/events/back-in-shape-v2`} className="py-0.5 px-4 bg-neutral-300 hover:bg-neutral-400 text-black/70 font-bold rounded-md">{`<- Back`}</Link>
       </div>
-      <div className="col-span-full xl:col-span-8 bg-white shadow-lg rounded-md border border-slate-200">
+      <div className="col-span-full xl:col-span-8 bg-white dark:bg-neutral-900 shadow-lg rounded-md border border-slate-200">
         <header className="px-5 py-4 border-b border-slate-100">
-          <h2 className="font-semibold text-slate-800">List Proses Back In Shape V2</h2>
+          <h2 className="font-semibold text-slate-800 dark:text-slate-200">List Proses Back In Shape V2</h2>
         </header>
         <div className="p-3">
           {/* Table */}
           <div className="overflow-x-auto">
             <table className="table-auto w-full">
               {/* Table header */}
-              <thead className="text-xs uppercase text-slate-400 bg-slate-50 rounded-sm">
+              <thead className="text-xs uppercase text-slate-400 dark:text-slate-400 bg-slate-50 dark:bg-slate-800 rounded-sm">
                 <tr>
                   <th className="p-2">
                     <div className="font-semibold text-left min-w-max">Order Id</div>
@@ -52,12 +52,12 @@ function BisPay() {
                 </tr>
               </thead>
               {/* Table body */}
-              <tbody className="text-sm font-medium divide-y divide-slate-100">
+              <tbody className="text-sm font-medium divide-y divide-slate-100 text-slate-900 dark:text-slate-100">
                 {dataBisPay.map((row, index) => (
                   <tr key={index}>
                     <td className="py-4 px-2">
                       <div className="flex items-center">
-                        <div className="text-slate-800">{row.order_id}</div>
+                        <p>{row.order_id}</p>
                       </div>
                     </td>
                     <td className="py-4 px-2">
