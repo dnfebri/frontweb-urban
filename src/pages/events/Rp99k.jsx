@@ -20,6 +20,7 @@ function Rp99k() {
   },[dispatch]);
 
   const handlePageClick = async({selected}) => {
+    setPage(selected + 1);
     await dispatch(getRp99k({page: selected + 1, search}));
   }
 
@@ -108,7 +109,7 @@ function Rp99k() {
         <p className="text-sm">
           Total Rows: {rows} Page: {rows ? page : 0} of {pages}
         </p>
-        <div className="p-2 my-3 grid justify-center">
+        <div className="p-2 my-3 grid justify-center" key={rows}>
           <ReactPaginate
             previousLabel="< Prev"
             breakLabel="..."
