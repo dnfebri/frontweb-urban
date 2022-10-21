@@ -91,7 +91,7 @@ function Rp99k() {
                       </div>
                     </td>
                     <td className="py-4 px-2">
-                      <div className="text-left">{row.status}</div>
+                      <div className={`text-black text-center ${row.status == 'settlement' || row.status == 'deny' ? 'bg-green-400' : 'bg-yellow-400' }`}>{row.status}</div>
                     </td>
                     <td className="py-4 px-2">
                       <div className="text-center">

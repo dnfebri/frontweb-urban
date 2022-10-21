@@ -8,8 +8,11 @@ function Rp99kDetail() {
   const navigate  = useNavigate();
   const {id} = useParams();
   const data = useSelector((state) => rp99kSelector.selectById(state, id));
+  const { clubs } = useSelector(
+    (state) => state.rp99ks
+  );
   if (!data) navigate('/events/99k');
-  const dateJoin = new Date(data.created_at);
+  if (data) {const dateJoin = new Date(data.created_at);}
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   return (
@@ -49,6 +52,16 @@ function Rp99kDetail() {
                 <td className="p-2">: {data ? data.order_name : ''}</td>
               </tr>
               <tr>
+                <td className="p-2">Club</td>
+                <td className="p-2">: {
+                  data ? 
+                    clubs.map((club) => {
+                      if(club['id'] == data.club_id) return club['name'];
+                    })
+                  : ''}
+                </td>
+              </tr>
+              <tr>
                 <td className="p-2">Payment Type</td>
                 <td className="p-2">: {data ? data.payment_type : ''}</td>
               </tr>
@@ -58,7 +71,7 @@ function Rp99kDetail() {
               </tr>
               <tr>
                 <td className="p-2">Status</td>
-                <td className="p-2">: {data ? data.status : ''}</td>
+                <td className="p-2 flex">: <p className={`mx-1 px-2 ${data ? data.status == 'settlement' || data.status == 'deny' ? 'bg-green-400' : 'bg-yellow-400' : ''}`}>{data ? data.status : ''}</p></td>
               </tr>
             </tbody>
           </table>
