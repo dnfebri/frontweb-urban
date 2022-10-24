@@ -28,7 +28,7 @@ function FotoKelasEdit() {
       setDescription(fotoKelas.description)
       setClubId(fotoKelas.clubId)
     } else {
-      navigate('/uaweb/personal-trainer');
+      navigate('/uaweb/foto-kelas');
     }
   },[fotoKelas])
 

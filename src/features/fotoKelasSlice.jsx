@@ -60,11 +60,11 @@ export const deleteFotoKelas = createAsyncThunk("fotoKelas/deleteFotoKelas", asy
 });
 
 const fotoKelasEntity = createEntityAdapter({
-  selectId: (personalTrainer) => personalTrainer.id
+  selectId: (FotoKelas) => FotoKelas.id
 });
 
 const fotoKelasSlice = createSlice({
-  name: 'personalTrainer',
+  name: 'FotoKelas',
   initialState: {
     isSuccess: false,
     isLoading: false,
