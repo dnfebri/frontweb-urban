@@ -19,6 +19,9 @@ export const savePersonalTrainer = createAsyncThunk("pt/savePersonalTrainer", as
     const response = await axios.post( process.env.API_URL_APP + 'personal_training', formData, {
       headers: {
         "Content-type": "multipart/form-data",
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Headers': 'Authorization'
       }
     });
     return response.data;
@@ -36,6 +39,9 @@ export const updatePersonalTrainer = createAsyncThunk("pt/updatePersonalTrainer"
     const response = await axios.put( process.env.API_URL_APP + 'personal_training/' + id , formData, {
       headers: {
         "Content-type": "multipart/form-data",
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Headers': 'Authorization'
       }
     });
     return response.data;
@@ -49,7 +55,13 @@ export const updatePersonalTrainer = createAsyncThunk("pt/updatePersonalTrainer"
 
 export const deletePersonalTrainer = createAsyncThunk("pt/deletePersonalTrainer", async(id, thunkAPI) => {
   try {
-    const response = await axios.delete( process.env.API_URL_APP + `personal_training/${id}`);
+    const response = await axios.delete( process.env.API_URL_APP + `personal_training/${id}`, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Headers': 'Authorization'
+      }
+    });
     return {res: response.data, id: id};
   } catch (error) {
     if(error.response){
