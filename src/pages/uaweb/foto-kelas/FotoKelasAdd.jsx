@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { reset, savePersonalTrainer } from '../../../features/personalTrainerSlice';
+import { useNavigate } from 'react-router-dom'
+import { saveFotoKelas } from '../../../features/fotoKelasSlice';
 import Dashboard from '../../components/Dashboard'
 import InputModel1 from '../../components/InputModel1';
 import TextEditor from '../../components/TextEditor';
 
-function PersonalTrainerAdd() {
+function fotoKelasAdd() {
   const { isError, isSuccess, isLoading, massage } = useSelector(
-    (state) => state.personalTrainers
+    (state) => state.fotoKelases
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -17,27 +17,27 @@ function PersonalTrainerAdd() {
   const [clubId, setClubId] = useState('');
   const [file, setFile] = useState('');
   const [preview, setPreview] = useState('');
-
+  
   const loadImage = (e) => {
     const image = e.target.files[0];
     setFile(image);
     setPreview(URL.createObjectURL(image));
   }
-
+  
   useEffect(() => {
     if(isSuccess) {
-      navigate('/uaweb/personal-trainer');
+      navigate('/uaweb/foto-kelas');
     }
-  }, [navigate, dispatch, isSuccess])
+  }, [navigate, dispatch, isSuccess]);
 
-  const savePt = async(e) => {
+  const saveClass = async(e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
     formData.append("clubId", clubId);
-    formData.append("file", file);
-    await dispatch(savePersonalTrainer(formData));
+    formData.append("image", file);
+    await dispatch(saveFotoKelas(formData));
   }
 
   return (
@@ -47,18 +47,18 @@ function PersonalTrainerAdd() {
       </div>
       <div className="col-span-full xl:col-span-8 bg-white dark:bg-neutral-900 shadow-lg rounded-md border border-slate-200">
         <header className="px-5 py-4 border-b border-slate-100">
-          <h2 className="font-semibold text-slate-800 dark:text-slate-200 text-xl">Add Personal Trainer</h2>
+          <h2 className="font-semibold text-slate-800 dark:text-slate-200 text-xl">Foto Kelas Add</h2>
         </header>
         <div className="py-3 px-4">
           <div className="max-w-3xl pb-8">
             {isError && <p className="text-center mt-2">{massage}</p>}
-            <form onSubmit={savePt}>
+            <form onSubmit={saveClass}>
               <InputModel1 label="Name" type="text" name="name" id="name" value={name} onChange={(e) => {setName(e.target.value)}} />
               <div className="pt-4 my-2">
                 <label className="flex items-center space-x-4">
                   <span className="min-w-max">Select Club</span>
-                  <select onChange={(e) => {setClubId(e.target.value);}} className="px-2 w-full bg-transparent focus:ring-0 border-0 border-b text-black focus:border-black dark:text-white dark:bg-neutral-900">
-                    <option >Select Club</option>
+                  <select onChange={(e) => {setClubId(e.target.value);}} className="px-2 w-full bg-transparent focus:ring-0 border-0 border-b text-black focus:border-black dark:text-white">
+                    <option value={null}>Select Club</option>
                     <option value="1">HO</option>
                     <option value="2">Merr</option>
                     <option value="3">Marvell</option>
@@ -98,4 +98,4 @@ function PersonalTrainerAdd() {
   )
 }
 
-export default PersonalTrainerAdd
+export default fotoKelasAdd

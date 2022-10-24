@@ -6,6 +6,7 @@ import rp99kReducer from "../features/rp99kSlice";
 import backInShapeReducer from "../features/backInShapeSlice";
 import bisPayReducer from "../features/bisPaySlice";
 import personalTrainerReducer from "../features/personalTrainerSlice";
+import fotoKelasReducer from "../features/fotoKelasSlice";
 
 export default configureStore({
   reducer: {
@@ -16,5 +17,6 @@ export default configureStore({
     backInShapes: backInShapeReducer,
     bisPays: bisPayReducer,
     personalTrainers: personalTrainerReducer,
+    fotoKelases: fotoKelasReducer,
   },
 })

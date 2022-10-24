@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { personalTrainerSelector, updatePersonalTrainer } from '../../../features/personalTrainerSlice';
+import { fotoKelasSelector, updateFotoKelas } from '../../../features/fotoKelasSlice';
 import Dashboard from '../../components/Dashboard'
 import InputModel1 from '../../components/InputModel1';
 import TextEditor from '../../components/TextEditor';
 
-function PersonalTrainerEdit() {
+function FotoKelasEdit() {
   const { isError, isSuccess, massage } = useSelector(
-    (state) => state.personalTrainers
+    (state) => state.fotoKelases
   );
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,17 +20,17 @@ function PersonalTrainerEdit() {
   const [file, setFile] = useState('');
   const [preview, setPreview] = useState('');
 
-  const personalTrainer = useSelector((state) => personalTrainerSelector.selectById(state, id));
+  const fotoKelas = useSelector((state) => fotoKelasSelector.selectById(state, id));
   
   useEffect(() => {
-    if (personalTrainer) {
-      setName(personalTrainer.name)
-      setDescription(personalTrainer.description)
-      setClubId(personalTrainer.clubId)
+    if (fotoKelas) {
+      setName(fotoKelas.name)
+      setDescription(fotoKelas.description)
+      setClubId(fotoKelas.clubId)
     } else {
       navigate('/uaweb/personal-trainer');
     }
-  },[personalTrainer])
+  },[fotoKelas])
 
   const loadImage = (e) => {
     const image = e.target.files[0];
@@ -40,18 +40,18 @@ function PersonalTrainerEdit() {
   
   useEffect(() => {
     if(isSuccess) {
-      navigate('/uaweb/personal-trainer');
+      navigate('/uaweb/foto-kelas');
     }
-  }, [navigate, dispatch, isSuccess])
+  }, [navigate, isSuccess])
 
-  const updatePt = async(e) => {
+  const updateClass = async(e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
     formData.append("description", description);
     formData.append("clubId", clubId);
-    formData.append("file", file);
-    await dispatch(updatePersonalTrainer({id, formData}));
+    formData.append("image", file);
+    await dispatch(updateFotoKelas({id, formData}));
   }
 
   return (
@@ -61,10 +61,10 @@ function PersonalTrainerEdit() {
       </div>
       <div className="col-span-full xl:col-span-8 bg-white dark:bg-neutral-900 shadow-lg rounded-md border border-slate-200">
         <header className="px-5 py-4 border-b border-slate-100">
-          <h2 className="font-semibold text-slate-800 dark:text-slate-200 text-xl">PersonalTrainerEdit</h2>
+          <h2 className="font-semibold text-slate-800 dark:text-slate-200 text-xl">Edit Foto Kelas</h2>
         </header>
-        <div className="pb-3 px-2">
-          <form onSubmit={updatePt}>
+        <div className="py-3 px-2">
+          <form onSubmit={updateClass}>
             <div className="grid md:grid-cols-2">
               <div className="p-2">
                 <InputModel1 label="Name" type="text" name="name" id="name" value={name} onChange={(e) => {setName(e.target.value)}}/>
@@ -72,7 +72,7 @@ function PersonalTrainerEdit() {
                   <label className="flex items-center space-x-4">
                     <span className="min-w-max">Select Club</span>
                     <select onChange={(e) => {setClubId(e.target.value);}} value={clubId} className="px-2 w-full bg-transparent focus:ring-0 border-0 border-b text-black focus:border-black dark:text-white dark:bg-neutral-900">
-                      <option >Select Club</option>
+                      <option value={null}>Select Club</option>
                       <option value="1">HO</option>
                       <option value="2">Merr</option>
                       <option value="3">Marvell</option>
@@ -92,7 +92,7 @@ function PersonalTrainerEdit() {
                 <h2 className="mb-2">Preview Image :</h2>
                 {preview ? (
                     <img src={preview} alt="Preview Image" className="h-full mx-auto" />
-                ) : <img src={personalTrainer ? personalTrainer.url : ''} alt="Preview Image" className="h-full mx-auto"/> }
+                ) : <img src={fotoKelas ? fotoKelas.url : ''} alt="Preview Image" className="h-full mx-auto"/> }
               </div>
             </div>
             <div className="pt-4 my-2">
@@ -109,4 +109,4 @@ function PersonalTrainerEdit() {
   )
 }
 
-export default PersonalTrainerEdit
+export default FotoKelasEdit

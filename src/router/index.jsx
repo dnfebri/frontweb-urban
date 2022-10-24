@@ -19,6 +19,9 @@ import PersonalTrainerAdd from '../pages/uaweb/personal-trainer/PersonalTrainerA
 import PersonalTrainerEdit from '../pages/uaweb/personal-trainer/PersonalTrainerEdit';
 import Rp99k from '../pages/events/Rp99k';
 import Rp99kDetail from '../pages/events/Rp99kDetail';
+import FotoKelas from '../pages/uaweb/foto-kelas/FotoKelas';
+import FotoKelasAdd from '../pages/uaweb/foto-kelas/FotoKelasAdd';
+import FotoKelasEdit from '../pages/uaweb/foto-kelas/FotoKelasEdit';
 
 function Router() {
   const location = useLocation();
@@ -63,6 +66,11 @@ function Router() {
             <Route index element={<PersonalTrainer />} />
             <Route path='add' element={<PersonalTrainerAdd />} />
             <Route path=':id' element={<PersonalTrainerEdit />} />
+          </Route>
+          <Route path="foto-kelas" >
+            <Route index element={<FotoKelas />} />
+            <Route path='add' element={<FotoKelasAdd />} />
+            <Route path=':id' element={<FotoKelasEdit />} />
           </Route>
         </Route>
         {/* <Route path="/role/edit" element={<RoleEdit />} /> */}
