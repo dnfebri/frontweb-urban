@@ -21,6 +21,7 @@ export const saveFotoKelas = createAsyncThunk("fotoKelas/saveFotoKelas", async(f
         "Content-type": "multipart/form-data"
       }
     });
+    console.log('Post file', response);
     return response.data;
   } catch (error) {
     console.log('Error Post file', error);
