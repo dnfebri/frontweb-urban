@@ -1,12 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Dashboard from './components/Dashboard'
 import WelcomeBanner from '../partials/dashboard/WelcomeBanner';
 import DashboardAvatars from '../partials/dashboard/DashboardAvatars';
 import FilterButton from '../partials/actions/FilterButton';
 import Datepicker from '../partials/actions/Datepicker';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { getMe } from '../features/authSlice';
+import Cookies from 'js-cookie';
 
 function Index() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const {isError} = useSelector((state => state.auth.authState));
+  // console.log('Dashboard', useSelector((state => state.auth))); /// INI di akses terus
+  
+  const [token] = useState(Cookies.get('token'));
+  
+  useEffect(()=>{
+    if(!token){
+      navigate("/login");
+    } else {
+      dispatch(getMe());
+    }
+  }, [dispatch, token]);
+
+  useEffect(()=>{
+    console.log('effec dasboard 2', isError);
+    if(isError){
+      navigate("/login");
+    }
+  }, [isError, navigate]);
+
   return (
     <Dashboard>
       {/* Welcome banner */}

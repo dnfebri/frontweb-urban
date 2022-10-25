@@ -1,34 +1,34 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { getMe } from '../../features/authSlice'; 
+import React, { useState } from 'react';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { useNavigate } from 'react-router-dom';
+// import { getMe } from '../../features/authSlice'; 
 
 import Sidebar from '../../partials/Sidebar';
 import Header from '../../partials/Header';
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 function Dashboard({children}) {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const {isError} = useSelector((state => state.auth.authState));
-  // console.log('Dashboard', useSelector((state => state.auth))); /// INI di akses terus
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
+  // const {isError} = useSelector((state => state.auth.authState));
+  // // console.log('Dashboard', useSelector((state => state.auth))); /// INI di akses terus
   
-  const [token] = useState(Cookies.get('token'));
+  // const [token] = useState(Cookies.get('token'));
   
-  useEffect(()=>{
-    if(!token){
-      navigate("/login");
-    } else {
-      dispatch(getMe());
-    }
-  }, [dispatch, token]);
+  // useEffect(()=>{
+  //   if(!token){
+  //     navigate("/login");
+  //   } else {
+  //     dispatch(getMe());
+  //   }
+  // }, [dispatch, token]);
 
-  useEffect(()=>{
-    console.log('effec dasboard 2', isError);
-    if(isError){
-      navigate("/login");
-    }
-  }, [isError, navigate]);
+  // useEffect(()=>{
+  //   console.log('effec dasboard 2', isError);
+  //   if(isError){
+  //     navigate("/login");
+  //   }
+  // }, [isError, navigate]);
 // console.log(dispatch(getMe()));
 
   
