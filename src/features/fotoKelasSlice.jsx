@@ -18,7 +18,10 @@ export const saveFotoKelas = createAsyncThunk("fotoKelas/saveFotoKelas", async(f
   try {
     const response = await axios.post( process.env.API_URL_APP + 'foto_kelas', formData, {
       headers: {
-        "Content-type": "multipart/form-data"
+        "Content-type": "multipart/form-data",
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Headers': 'Authorization'
       }
     });
     console.log('Post file', response);

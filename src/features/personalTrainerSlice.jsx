@@ -18,10 +18,10 @@ export const savePersonalTrainer = createAsyncThunk("pt/savePersonalTrainer", as
   try {
     const response = await axios.post( process.env.API_URL_APP + 'personal_training', formData, {
       headers: {
-        "Content-type": "multipart/form-data"
-        // 'Access-Control-Allow-Origin': '*',
-        // 'Access-Control-Allow-Credentials': true,
-        // 'Access-Control-Allow-Headers': 'Authorization'
+        "Content-type": "multipart/form-data",
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': true,
+        'Access-Control-Allow-Headers': 'Authorization'
       }
     });
     return response.data;
