@@ -24,7 +24,7 @@ function Dashboard({children}) {
   }, [dispatch, token]);
 
   useEffect(()=>{
-    // console.log('effec dasboard 2', isError);
+    console.log('effec dasboard 2', isError);
     if(isError){
       navigate("/login");
     }
