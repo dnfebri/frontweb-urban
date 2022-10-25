@@ -10,13 +10,12 @@ import Cookies from 'js-cookie';
 function Dashboard({children}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {isError} = useSelector((state => state.auth));
+  const {isError} = useSelector((state => state.auth.authState));
   // console.log('Dashboard', useSelector((state => state.auth))); /// INI di akses terus
   
   const [token] = useState(Cookies.get('token'));
   
   useEffect(()=>{
-    // console.log(token);
     if(!token){
       navigate("/login");
     } else {
@@ -25,6 +24,7 @@ function Dashboard({children}) {
   }, [dispatch, token]);
 
   useEffect(()=>{
+    // console.log('effec dasboard 2', isError);
     if(isError){
       navigate("/login");
     }

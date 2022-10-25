@@ -6,11 +6,10 @@ import axios from "axios";
 import Cookies from 'js-cookie';
 
 import './css/style.css';
-// import './charts/ChartjsConfig';
 import Router from './router';
 
-axios.defaults.withCredentials = true;
-axios.defaults.credentials = 'include';
+// axios.defaults.withCredentials = true;
+// axios.defaults.credentials = 'include';
 axios.defaults.headers.token = Cookies.get('token')
 
 function App() {

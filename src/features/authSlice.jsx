@@ -43,7 +43,6 @@ export const LoginUser = createAsyncThunk("user/LoginUser", async(user, thunkAPI
 });
 
 export const getMe = createAsyncThunk("user/getMe", async(_, thunkAPI) => {
-  // console.log(axios.defaults.headers);
   try {
     const response = await axios.get( process.env.API_URL_APP + 'auth/me');
     return response.data;
@@ -97,10 +96,10 @@ export const authSlice = createSlice({
       // console.log(action);
       state.authState.isLoading = false;
       state.authState.isSuccess = true;
-      state.authState.token = action.payload;
+      // state.authState.token = action.payload;
     });
     builder.addCase(getMe.rejected, (state, action) => {
-      // console.log(action);
+      // console.log('getMe.rejected', action);
       state.authState.isLoading = false;
       state.authState.isError = true;
       state.authState.massage = action.payload;

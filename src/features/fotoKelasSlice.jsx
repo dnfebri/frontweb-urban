@@ -18,10 +18,7 @@ export const saveFotoKelas = createAsyncThunk("fotoKelas/saveFotoKelas", async(f
   try {
     const response = await axios.post( process.env.API_URL_APP + 'foto_kelas', formData, {
       headers: {
-        "Content-type": "multipart/form-data",
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': true,
-        'Access-Control-Allow-Headers': 'Authorization'
+        "Content-type": "multipart/form-data"
       }
     });
     return response.data;
@@ -38,10 +35,7 @@ export const updateFotoKelas = createAsyncThunk("fotoKelas/updateFotoKelas", asy
   try {
     const response = await axios.put( process.env.API_URL_APP + 'foto_kelas/' + id , formData, {
       headers: {
-        "Content-type": "multipart/form-data",
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': true,
-        'Access-Control-Allow-Headers': 'Authorization'
+        "Content-type": "multipart/form-data"
       }
     });
     return response.data;
@@ -55,13 +49,7 @@ export const updateFotoKelas = createAsyncThunk("fotoKelas/updateFotoKelas", asy
 
 export const deleteFotoKelas = createAsyncThunk("fotoKelas/deleteFotoKelas", async(id, thunkAPI) => {
   try {
-    const response = await axios.delete( process.env.API_URL_APP + `foto_kelas/${id}`, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': true,
-        'Access-Control-Allow-Headers': 'Authorization'
-      }
-    });
+    const response = await axios.delete( process.env.API_URL_APP + `foto_kelas/${id}`);
     return {res: response.data, id: id};
   } catch (error) {
     if(error.response){
