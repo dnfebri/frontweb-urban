@@ -1,3 +1,4 @@
+import FormData from 'form-data';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
@@ -29,6 +30,7 @@ function fotoKelasAdd() {
       navigate('/uaweb/foto-kelas');
     }
   }, [navigate, dispatch, isSuccess]);
+  console.log("file", file);
 
   const saveClass = async(e) => {
     e.preventDefault();
