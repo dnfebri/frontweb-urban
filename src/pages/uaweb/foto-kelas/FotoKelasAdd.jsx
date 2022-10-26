@@ -89,7 +89,9 @@ function fotoKelasAdd() {
                 {description}
               </div> */}
               <div className="my-4">
-                <button className="px-4 py-1 bg-green-500 text-white rounded" type="submit">Simpan</button>
+                <button className="px-4 py-1 bg-green-500 text-white rounded" type="submit" disabled={isLoading ? true : false}>
+                  {isLoading ? 'Proses...' : 'Simpan'}
+                </button>
               </div>
             </form>
           </div>
