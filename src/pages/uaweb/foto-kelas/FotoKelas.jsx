@@ -45,8 +45,6 @@ function FotoKelas() {
     }
   }
 
-  console.log(process.env.API_URL_APP);
-
   return (
     <Dashboard>
       {/* Dashboard actions */}

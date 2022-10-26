@@ -6,7 +6,7 @@ export const getFotoKelases = createAsyncThunk("fotoKelas/getFotoKelases", async
     const response = await axios.get( process.env.API_URL_APP + 'foto_kelas');
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.log('getFotoKelases', error);
     if(error.response){
       const massage = error.response;
       return thunkAPI.rejectWithValue(massage);
