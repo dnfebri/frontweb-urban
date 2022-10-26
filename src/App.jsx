@@ -10,7 +10,7 @@ import Router from './router';
 
 // axios.defaults.withCredentials = true;
 // axios.defaults.credentials = 'include';
-axios.defaults.headers.token = Cookies.get('token')
+// axios.defaults.headers.token = Cookies.get('token')
 
 function App() {
 
