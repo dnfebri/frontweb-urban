@@ -29,8 +29,7 @@ function fotoKelasAdd() {
     if(isSuccess) {
       navigate('/uaweb/foto-kelas');
     }
-  }, [navigate, dispatch, isSuccess]);
-  console.log("file", file);
+  }, [navigate, isSuccess]);
 
   const saveClass = async(e) => {
     e.preventDefault();

@@ -45,6 +45,8 @@ function FotoKelas() {
     }
   }
 
+  console.log(process.env.API_URL_APP);
+
   return (
     <Dashboard>
       {/* Dashboard actions */}
@@ -85,7 +87,7 @@ function FotoKelas() {
                     </td>
                     <td className="p-2">
                       <div className="text-left">
-                        <img src={row.url} alt={row.image} className="max-h-20" />
+                        <img src={process.env.API_URL_APP + row.url} alt={row.image} className="max-h-20" />
                       </div>
                     </td>
                     <td className="p-2">
