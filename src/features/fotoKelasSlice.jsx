@@ -19,9 +19,6 @@ export const saveFotoKelas = createAsyncThunk("fotoKelas/saveFotoKelas", async(f
     const response = await axios.post( process.env.API_URL_APP + 'foto_kelas', formData, {
       headers: {
         "Content-Type": "multipart/form-data"
-        // 'Access-Control-Allow-Origin': '*',
-        // 'Access-Control-Allow-Credentials': true,
-        // 'Access-Control-Allow-Headers': 'Authorization'
       }
     });
     console.log('Post file', response);
@@ -89,14 +86,21 @@ const fotoKelasSlice = createSlice({
       state.isLoading = false;
       fotoKelasEntity.setAll(state.data, action.payload)
     },
+    [saveFotoKelas.pending]: (state, action) => {
+      state.isLoading = true;
+    },
     [saveFotoKelas.fulfilled]: (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;
       state.massage = action.payload.msg;
     },
     [saveFotoKelas.rejected]: (state, action) => {
+      state.isLoading = false;
       state.isError = true;
       state.massage = action.payload.data.msg
+    },
+    [updateFotoKelas.pending]: (state, action) => {
+      state.isLoading = true;
     },
     [updateFotoKelas.fulfilled]: (state, action) => {
       state.isLoading = false;
@@ -104,6 +108,7 @@ const fotoKelasSlice = createSlice({
       state.massage = action.payload.msg;
     },
     [updateFotoKelas.rejected]: (state, action) => {
+      state.isLoading = false;
       state.isError = true;
       state.massage = action.payload.data.msg
     },
