@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Cookies from 'js-cookie';
 import jwt_decode from "jwt-decode";
 import { LoginUser, reset, update } from '../../features/authSlice';
 
 import LogoUA from "../../logo_ua.png";
 import InputModel1 from './InputModel1';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 function Login() {
 
