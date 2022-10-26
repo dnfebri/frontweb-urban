@@ -3,11 +3,7 @@ import axios from "axios";
 
 export const getFotoKelases = createAsyncThunk("fotoKelas/getFotoKelases", async(_, thunkAPI) => {
   try {
-    const response = await axios.get( process.env.API_URL_APP + 'foto_kelas', {
-      headers: {
-        "Content-Type": "application/json"
-      }
-    });
+    const response = await axios.get( process.env.API_URL_APP + 'foto_kelas');
     return response.data;
   } catch (error) {
     console.log('getFotoKelases', error);
