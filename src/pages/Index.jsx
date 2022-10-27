@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { getMe } from '../features/authSlice';
 import Cookies from 'js-cookie';
+import axios from 'axios';
 
 function Index() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function Index() {
     if(!token){
       navigate("/login");
     } else {
+      if(!axios.defaults.headers.token) axios.defaults.headers.token = token;
       dispatch(getMe());
     }
   }, [dispatch, token]);
