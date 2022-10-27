@@ -38,13 +38,11 @@ function FotoKelas() {
   },[isSuccess, isError, massage]);
   
   useEffect(() => {
-    dispatch(getFotoKelases());
-  }, [dispatch]);
-
-  useEffect(() => {
     if (errorGetData) {
       dispatch(getFotoKelases());
       dispatch(reset());
+    } else {
+      dispatch(getFotoKelases());
     }
   }, [dispatch, errorGetData]);
 

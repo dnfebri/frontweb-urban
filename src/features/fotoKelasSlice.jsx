@@ -6,7 +6,7 @@ export const getFotoKelases = createAsyncThunk("fotoKelas/getFotoKelases", async
     const response = await axios.get( process.env.API_URL_APP + 'foto_kelas');
     return response.data;
   } catch (error) {
-    console.log('getFotoKelases error', error);
+    // console.log('getFotoKelases error', error);
     if(error.response){
       const massage = error.response;
       return thunkAPI.rejectWithValue(massage);
@@ -90,7 +90,6 @@ const fotoKelasSlice = createSlice({
     [getFotoKelases.rejected]: (state, action) => {
       state.isLoading = false;
       if(!action.payload) state.errorGetData = true;
-      // fotoKelasEntity.setAll(state.data, action.payload)
     },
     [saveFotoKelas.pending]: (state, action) => {
       state.isLoading = true;

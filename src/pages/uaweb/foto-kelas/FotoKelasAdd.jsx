@@ -2,6 +2,8 @@ import FormData from 'form-data';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom'
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import { saveFotoKelas } from '../../../features/fotoKelasSlice';
 import Dashboard from '../../components/Dashboard'
 import InputModel1 from '../../components/InputModel1';
@@ -18,6 +20,7 @@ function fotoKelasAdd() {
   const [clubId, setClubId] = useState('');
   const [file, setFile] = useState('');
   const [preview, setPreview] = useState('');
+  const MySwal = withReactContent(Swal);
   
   const loadImage = (e) => {
     const image = e.target.files[0];
@@ -29,7 +32,17 @@ function fotoKelasAdd() {
     if(isSuccess) {
       navigate('/uaweb/foto-kelas');
     }
-  }, [navigate, isSuccess]);
+    if(isError) {
+      MySwal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: `${massage}`,
+        showConfirmButton: false,
+        timer: 3000
+      })
+      dispatch(reset());
+    }
+  }, [navigate, isSuccess, isError]);
 
   const saveClass = async(e) => {
     e.preventDefault();
