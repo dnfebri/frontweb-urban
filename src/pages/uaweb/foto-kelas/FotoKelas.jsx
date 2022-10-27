@@ -45,7 +45,7 @@ function FotoKelas() {
     if (errorGetData) {
       dispatch(getFotoKelases());
     }
-  }, [errorGetData]);
+  }, [dispatch, errorGetData]);
 
   const deleteClass = async(classId) => {
     const del = confirm('apakah anda yakin ?');
