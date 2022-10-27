@@ -44,6 +44,7 @@ function FotoKelas() {
   useEffect(() => {
     if (errorGetData) {
       dispatch(getFotoKelases());
+      dispatch(reset());
     }
   }, [dispatch, errorGetData]);
 
