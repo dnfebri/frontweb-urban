@@ -13,10 +13,13 @@ function FotoKelas() {
     (state) => state.fotoKelases
   );
   const MySwal = withReactContent(Swal);
+
+  const getData = () => {
+    dispatch(getFotoKelases());
+  }
   
   useEffect(() => {
-    // dispatch(getFotoKelases());
-    getFotoKelases();
+    getData();
     if(isSuccess) {
       MySwal.fire({
         position: 'top-end',
@@ -37,7 +40,7 @@ function FotoKelas() {
       })
       dispatch(reset());
     }
-  },[dispatch, getFotoKelases, isSuccess, isError, massage]);
+  },[getData, isSuccess, isError, massage]);
 
   const deleteClass = async(classId) => {
     const del = confirm('apakah anda yakin ?');
