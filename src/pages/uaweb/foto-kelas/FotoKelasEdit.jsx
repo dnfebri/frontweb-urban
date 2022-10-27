@@ -93,7 +93,7 @@ function FotoKelasEdit() {
                 <h2 className="mb-2">Preview Image :</h2>
                 {preview ? (
                     <img src={preview} alt="Preview Image" className="h-full mx-auto" />
-                ) : <img src={fotoKelas ? process.env.API_URL_APP + fotoKelas.url : ''} alt="Preview Image" className="h-full mx-auto"/> }
+                ) : <img src={fotoKelas ? fotoKelas.url : ''} alt="Preview Image" className="h-full mx-auto"/> }
               </div>
             </div>
             <div className="pt-4 my-2">
