@@ -16,6 +16,9 @@ function FotoKelas() {
   
   useEffect(() => {
     dispatch(getFotoKelases());
+  }, [dispatch]);
+
+  useEffect(() => {
     if(isSuccess) {
       MySwal.fire({
         position: 'top-end',
@@ -36,7 +39,7 @@ function FotoKelas() {
       })
       dispatch(reset());
     }
-  },[dispatch, isSuccess, isError, massage]);
+  },[isSuccess, isError, massage]);
 
   const deleteClass = async(classId) => {
     const del = confirm('apakah anda yakin ?');
