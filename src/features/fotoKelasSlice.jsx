@@ -1,17 +1,17 @@
 import { createSlice, createAsyncThunk, createEntityAdapter } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const getFotoKelases = createAsyncThunk("fotoKelas/getFotoKelases", async(_, thunkAPI) => {
-  try {
-    const response = await axios.get( process.env.API_URL_APP + 'foto_kelas');
-    return response.data;
-  } catch (error) {
-    console.log('getFotoKelases', error);
-    if(error.response){
-      const massage = error.response;
-      return thunkAPI.rejectWithValue(massage);
-    }
-  }
+export const getFotoKelases = createAsyncThunk("fotoKelas/getFotoKelases", async() => {
+  const response = await axios.get( process.env.API_URL_APP + 'foto_kelas');
+  return response.data;
+  // try {
+  // } catch (error) {
+  //   console.log('getFotoKelases', error);
+  //   if(error.response){
+  //     const massage = error.response;
+  //     return thunkAPI.rejectWithValue(massage);
+  //   }
+  // }
 });
 
 export const saveFotoKelas = createAsyncThunk("fotoKelas/saveFotoKelas", async(formData, thunkAPI) => {
