@@ -9,14 +9,10 @@ import Dashboard from '../../components/Dashboard'
 function FotoKelas() {
   const dispatch = useDispatch();
   const fotoKelas = useSelector(fotoKelasSelector.selectAll);
-  const { isError, isSuccess, isLoading, massage } = useSelector(
+  const { errorGetData, isError, isSuccess, isLoading, massage } = useSelector(
     (state) => state.fotoKelases
   );
   const MySwal = withReactContent(Swal);
-  
-  useEffect(() => {
-    dispatch(getFotoKelases());
-  }, [dispatch]);
 
   useEffect(() => {
     if(isSuccess) {
@@ -40,6 +36,16 @@ function FotoKelas() {
       dispatch(reset());
     }
   },[isSuccess, isError, massage]);
+  
+  useEffect(() => {
+    dispatch(getFotoKelases());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (errorGetData) {
+      dispatch(getFotoKelases());
+    }
+  }, [errorGetData]);
 
   const deleteClass = async(classId) => {
     const del = confirm('apakah anda yakin ?');

@@ -2,16 +2,16 @@ import { createSlice, createAsyncThunk, createEntityAdapter } from "@reduxjs/too
 import axios from "axios";
 
 export const getFotoKelases = createAsyncThunk("fotoKelas/getFotoKelases", async() => {
-  const response = await axios.get( process.env.API_URL_APP + 'foto_kelas');
-  return response.data;
-  // try {
-  // } catch (error) {
-  //   console.log('getFotoKelases', error);
-  //   if(error.response){
-  //     const massage = error.response;
-  //     return thunkAPI.rejectWithValue(massage);
-  //   }
-  // }
+  try {
+    const response = await axios.get( process.env.API_URL_APP + 'foto_kelas');
+    return response.data;
+  } catch (error) {
+    console.log('getFotoKelases error', error);
+    if(error.response){
+      const massage = error.response;
+      return thunkAPI.rejectWithValue(massage);
+    }
+  }
 });
 
 export const saveFotoKelas = createAsyncThunk("fotoKelas/saveFotoKelas", async(formData, thunkAPI) => {
@@ -66,6 +66,7 @@ const fotoKelasEntity = createEntityAdapter({
 const fotoKelasSlice = createSlice({
   name: 'FotoKelas',
   initialState: {
+    errorGetData: false,
     isSuccess: false,
     isLoading: false,
     isError: false,
@@ -74,6 +75,7 @@ const fotoKelasSlice = createSlice({
   },
   reducers: {
     reset: (state) => {
+      state.errorGetData = false,
       state.isSuccess = false,
       state.isLoading = false,
       state.isError = false,
@@ -84,6 +86,11 @@ const fotoKelasSlice = createSlice({
     [getFotoKelases.fulfilled]: (state, action) => {
       state.isLoading = false;
       fotoKelasEntity.setAll(state.data, action.payload)
+    },
+    [getFotoKelases.rejected]: (state, action) => {
+      state.isLoading = false;
+      if(!action.payload) state.errorGetData = true;
+      // fotoKelasEntity.setAll(state.data, action.payload)
     },
     [saveFotoKelas.pending]: (state, action) => {
       state.isLoading = true;
