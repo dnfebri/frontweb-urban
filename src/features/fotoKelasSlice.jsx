@@ -24,7 +24,6 @@ export const saveFotoKelas = createAsyncThunk("fotoKelas/saveFotoKelas", async(f
     console.log('Post file', response);
     return response.data;
   } catch (error) {
-    console.log('Error Post file', error);
     if(error.response){
       const massage = error.response;
       return thunkAPI.rejectWithValue(massage);

@@ -1,21 +1,30 @@
-import React, { useEffect } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
-import { deleteFotoKelas, fotoKelasSelector, getFotoKelases, reset } from '../../../features/fotoKelasSlice';
+// import { deleteFotoKelas, fotoKelasSelector, getFotoKelases, reset } from '../../../features/fotoKelasSlice';
 import Dashboard from '../../components/Dashboard'
 
 function FotoKelas() {
   const dispatch = useDispatch();
-  const fotoKelas = useSelector(fotoKelasSelector.selectAll);
+  // const fotoKelas = useSelector(fotoKelasSelector.selectAll);
+  const [fotoKelas, setFotokelas] = useState([]);
   const { isError, isSuccess, isLoading, massage } = useSelector(
     (state) => state.fotoKelases
   );
-  const MySwal = withReactContent(Swal)
+  const MySwal = withReactContent(Swal);
+
+  const getfotoKelas = async() => {
+    const respont = await axios.get( process.env.API_URL_APP + 'foto_kelas');
+    setFotokelas(respont.data);
+  }
+  console.log(fotoKelas);
   
   useEffect(() => {
-    dispatch(getFotoKelases())
+    // dispatch(getFotoKelases());
+    getfotoKelas();
     if(isSuccess) {
       MySwal.fire({
         position: 'top-end',

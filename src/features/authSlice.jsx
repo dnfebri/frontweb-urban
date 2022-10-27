@@ -45,10 +45,8 @@ export const LoginUser = createAsyncThunk("user/LoginUser", async(user, thunkAPI
 export const getMe = createAsyncThunk("user/getMe", async(_, thunkAPI) => {
   try {
     const response = await axios.get( process.env.API_URL_APP + 'auth/me');
-    console.log('user/getMe', response);
     return response.data;
   } catch (error) {
-    console.log('user/getMe error', error);
     if(error.response){
       const massage = error.response.data.msg;
       return thunkAPI.rejectWithValue(massage);
