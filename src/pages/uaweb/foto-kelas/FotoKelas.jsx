@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 // import { deleteFotoKelas, fotoKelasSelector, getFotoKelases, reset } from '../../../features/fotoKelasSlice';
+import { reset } from '../../../features/fotoKelasSlice';
 import Dashboard from '../../components/Dashboard'
 
 function FotoKelas() {
