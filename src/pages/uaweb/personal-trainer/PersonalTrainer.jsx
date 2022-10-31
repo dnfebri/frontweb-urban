@@ -9,13 +9,12 @@ import withReactContent from 'sweetalert2-react-content'
 function PersonalTrainer() {
   const dispatch = useDispatch();
   const personalTrainer = useSelector(personalTrainerSelector.selectAll);
-  const { isError, isSuccess, isLoading, massage } = useSelector(
+  const { errorGetData, isError, isSuccess, isLoading, massage } = useSelector(
     (state) => state.personalTrainers
   );
-  const MySwal = withReactContent(Swal)
+  const MySwal = withReactContent(Swal);
   
   useEffect(() => {
-    dispatch(getPersonalTrainers())
     if(isSuccess) {
       MySwal.fire({
         position: 'top-end',
@@ -37,6 +36,10 @@ function PersonalTrainer() {
       dispatch(reset());
     }
   },[dispatch, isSuccess, isError, massage]);
+  
+  useEffect(() => {
+    dispatch(getPersonalTrainers());
+  }, [dispatch]);
 
   const deletePt = async(ptId) => {
     const del = confirm('apakah anda yakin ?');

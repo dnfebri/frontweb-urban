@@ -38,13 +38,8 @@ function FotoKelas() {
   },[isSuccess, isError, massage]);
   
   useEffect(() => {
-    if (errorGetData) {
-      dispatch(getFotoKelases());
-      dispatch(reset());
-    } else {
-      dispatch(getFotoKelases());
-    }
-  }, [dispatch, errorGetData]);
+    dispatch(getFotoKelases());
+  }, [dispatch]);
 
   const deleteClass = async(classId) => {
     const del = confirm('apakah anda yakin ?');

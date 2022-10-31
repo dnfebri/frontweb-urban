@@ -35,7 +35,7 @@ function fotoKelasAdd() {
     if(isError) {
       MySwal.fire({
         position: 'top-end',
-        icon: 'success',
+        icon: 'error',
         title: `${massage}`,
         showConfirmButton: false,
         timer: 3000

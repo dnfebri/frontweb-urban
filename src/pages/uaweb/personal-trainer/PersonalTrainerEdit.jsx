@@ -2,6 +2,8 @@ import FormData from 'form-data';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import { personalTrainerSelector, updatePersonalTrainer } from '../../../features/personalTrainerSlice';
 import Dashboard from '../../components/Dashboard'
 import InputModel1 from '../../components/InputModel1';
@@ -20,6 +22,7 @@ function PersonalTrainerEdit() {
   const [clubId, setClubId] = useState('');
   const [file, setFile] = useState('');
   const [preview, setPreview] = useState('');
+  const MySwal = withReactContent(Swal);
 
   const personalTrainer = useSelector((state) => personalTrainerSelector.selectById(state, id));
   
@@ -43,7 +46,17 @@ function PersonalTrainerEdit() {
     if(isSuccess) {
       navigate('/uaweb/personal-trainer');
     }
-  }, [navigate, dispatch, isSuccess])
+    if(isError) {
+      MySwal.fire({
+        position: 'top-end',
+        icon: 'error',
+        title: `${massage}`,
+        showConfirmButton: false,
+        timer: 3000
+      })
+      dispatch(reset());
+    }
+  }, [navigate, isSuccess, isError])
 
   const updatePt = async(e) => {
     e.preventDefault();

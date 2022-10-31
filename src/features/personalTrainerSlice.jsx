@@ -19,9 +19,6 @@ export const savePersonalTrainer = createAsyncThunk("pt/savePersonalTrainer", as
     const response = await axios.post( process.env.API_URL_APP + 'personal_training', formData, {
       headers: {
         "Content-Type": "multipart/form-data"
-        // 'Access-Control-Allow-Origin': '*',
-        // 'Access-Control-Allow-Credentials': true,
-        // 'Access-Control-Allow-Headers': 'Authorization'
       }
     });
     return response.data;
@@ -69,6 +66,7 @@ const personalTrainerEntity = createEntityAdapter({
 const personalTrainerSlice = createSlice({
   name: 'personalTrainer',
   initialState: {
+    errorGetData: false,
     isSuccess: false,
     isLoading: false,
     isError: false,
@@ -77,6 +75,7 @@ const personalTrainerSlice = createSlice({
   },
   reducers: {
     reset: (state) => {
+      state.errorGetData = false,
       state.isSuccess = false,
       state.isLoading = false,
       state.isError = false,
@@ -87,6 +86,10 @@ const personalTrainerSlice = createSlice({
     [getPersonalTrainers.fulfilled]: (state, action) => {
       state.isLoading = false;
       personalTrainerEntity.setAll(state.data, action.payload)
+    },
+    [getPersonalTrainers.rejected]: (state, action) => {
+      state.isLoading = false;
+      if(!action.payload) state.errorGetData = true;
     },
     [savePersonalTrainer.fulfilled]: (state, action) => {
       state.isLoading = false;
