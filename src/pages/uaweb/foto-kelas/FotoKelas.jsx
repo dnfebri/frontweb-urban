@@ -3,11 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
+import { getClubs } from '../../../features/dataCrmSlice';
 import { deleteFotoKelas, fotoKelasSelector, getFotoKelases, reset } from '../../../features/fotoKelasSlice';
 import Dashboard from '../../components/Dashboard'
 
 function FotoKelas() {
   const dispatch = useDispatch();
+  const clubs = useSelector(
+    (state) => state.dataCrm.clubs
+  );
   const fotoKelas = useSelector(fotoKelasSelector.selectAll);
   const { errorGetData, isError, isSuccess, isLoading, massage } = useSelector(
     (state) => state.fotoKelases
@@ -35,9 +39,10 @@ function FotoKelas() {
       })
       dispatch(reset());
     }
-  },[isSuccess, isError, massage]);
+  },[isSuccess, isError, massage, dispatch]);
   
   useEffect(() => {
+    dispatch(getClubs());
     dispatch(getFotoKelases());
   }, [dispatch]);
 
@@ -95,7 +100,17 @@ function FotoKelas() {
                       <div className="text-left">{row.name}</div>
                     </td>
                     <td className="p-2">
-                      <div className="text-left">{row.clubId}</div>
+                      {/* <div className="text-left">{row.clubId}</div> */}
+                      <div className="text-left">
+                        {
+                          clubs.map((club, i) => (
+                            <span key={i}>
+                              {club.id == row.clubId ? club.name : ''}
+                            </span>
+                          ))
+                          
+                        }
+                      </div>
                     </td>
                     <td className="p-2">
                       <div className="text-center">

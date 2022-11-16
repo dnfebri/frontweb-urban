@@ -22,6 +22,9 @@ import Rp99kDetail from '../pages/events/Rp99kDetail';
 import FotoKelas from '../pages/uaweb/foto-kelas/FotoKelas';
 import FotoKelasAdd from '../pages/uaweb/foto-kelas/FotoKelasAdd';
 import FotoKelasEdit from '../pages/uaweb/foto-kelas/FotoKelasEdit';
+import SuccessStory from '../pages/uaweb/success-story/SuccessStory';
+import SuccessStoryAdd from '../pages/uaweb/success-story/SuccessStoryAdd';
+import SuccessStoryEdit from '../pages/uaweb/success-story/SuccessStoryEdit';
 
 function Router() {
   const location = useLocation();
@@ -71,6 +74,11 @@ function Router() {
             <Route index element={<FotoKelas />} />
             <Route path='add' element={<FotoKelasAdd />} />
             <Route path=':id' element={<FotoKelasEdit />} />
+          </Route>
+          <Route path="success-story" >
+            <Route index element={<SuccessStory />} />
+            <Route path='add' element={<SuccessStoryAdd />} />
+            <Route path=':id' element={<SuccessStoryEdit />} />
           </Route>
         </Route>
         {/* <Route path="/role/edit" element={<RoleEdit />} /> */}
