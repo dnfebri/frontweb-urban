@@ -12,7 +12,7 @@ function Rp99kDetail() {
     (state) => state.rp99ks
   );
   if (!data) navigate('/events/99k');
-  if (data) {const dateJoin = new Date(data.created_at);}
+  const dateJoin = new Date(data.created_at);
   const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
   return (

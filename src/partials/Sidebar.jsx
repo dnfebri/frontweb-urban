@@ -239,6 +239,19 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           <li className="mb-1 last:mb-0">
                             <NavLink
                               end
+                              to="/events/288"
+                              className={({ isActive }) =>
+                                `block text-slate-400 hover:text-slate-200 transition duration-150 truncate ` + (isActive || pathname.includes('events/288') ? '!text-indigo-500' : '')
+                              }
+                            >
+                              <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
+                                288
+                              </span>
+                            </NavLink>
+                          </li>
+                          <li className="mb-1 last:mb-0">
+                            <NavLink
+                              end
                               to="/events/99k"
                               className={({ isActive }) =>
                                 `block text-slate-400 hover:text-slate-200 transition duration-150 truncate ` + (isActive || pathname.includes('events/99k') ? '!text-indigo-500' : '')
@@ -275,8 +288,7 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                     <React.Fragment>
                       <a
                         href="#0"
-                        className={`block text-slate-200 hover:text-white truncate transition duration-150 ${ pathname.includes('uaweb') && 'hover:text-slate-200'
-                        }`}
+                        className={`block text-slate-200 hover:text-white truncate transition duration-150 ${ pathname.includes('uaweb') && 'hover:text-slate-200'}`}
                         onClick={(e) => {
                           e.preventDefault();
                           sidebarExpanded ? handleClick() : setSidebarExpanded(true);
@@ -344,15 +356,13 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                   );
                 }}
               </SidebarLinkGroup>
-              <SidebarLinkGroup activecondition={pathname === '/list' || pathname.includes('tasks')}>
+              <SidebarLinkGroup activecondition={pathname.includes('franchise')}>
                 {(handleClick, open) => {
                   return (
                     <React.Fragment>
                       <a
                         href="#0"
-                        className={`block text-slate-200 hover:text-white truncate transition duration-150 ${
-                          pathname === '/list' || pathname.includes('tasks') && 'hover:text-slate-200'
-                        }`}
+                        className={`block text-slate-200 hover:text-white truncate transition duration-150 ${pathname.includes('franchise') && 'hover:text-slate-200'}`}
                         onClick={(e) => {
                           e.preventDefault();
                           sidebarExpanded ? handleClick() : setSidebarExpanded(true);
@@ -363,21 +373,21 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                             <svg className="shrink-0 h-6 w-6" viewBox="0 0 24 24">
                               <path
                                 className={`fill-current text-slate-400 ${
-                                  (pathname === '/list' || pathname.includes('dashboard')) && '!text-indigo-500'
+                                  (pathname.includes('franchise')) && '!text-indigo-500'
                                 }`}
                                 d="M8 1v2H3v19h18V3h-5V1h7v23H1V1z"
                               />
                               <path
-                                className={`fill-current text-slate-600 ${(pathname === '/list' || pathname.includes('dashboard')) && 'text-indigo-600'}`}
+                                className={`fill-current text-slate-600 ${(pathname.includes('franchise')) && 'text-indigo-600'}`}
                                 d="M1 1h22v23H1z"
                               />
                               <path
-                                className={`fill-current text-slate-400 ${(pathname === '/list' || pathname.includes('dashboard')) && 'text-indigo-200'}`}
+                                className={`fill-current text-slate-400 ${(pathname.includes('franchise')) && 'text-indigo-200'}`}
                                 d="M15 10.586L16.414 12 11 17.414 7.586 14 9 12.586l2 2zM5 0h14v4H5z"
                               />
                             </svg>
                             <span className="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                              Tasks
+                              Franchise
                             </span>
                           </div>
                           {/* Icon */}
@@ -393,24 +403,11 @@ function Sidebar({ sidebarOpen, setSidebarOpen }) {
                           <li className="mb-1 last:mb-0">
                             <NavLink
                               end
-                              to="/"
+                              to="/franchise"
                               className="block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
                             >
                               <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                Kanban
-                              </span>
-                            </NavLink>
-                          </li>
-                          <li className="mb-1 last:mb-0">
-                            <NavLink
-                              end
-                              to="/list"
-                              className={({ isActive }) =>
-                                'block text-slate-400 hover:text-slate-200 transition duration-150 truncate ' + (isActive ? '!text-indigo-500' : '')
-                              }
-                            >
-                              <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">
-                                List
+                                Investment
                               </span>
                             </NavLink>
                           </li>

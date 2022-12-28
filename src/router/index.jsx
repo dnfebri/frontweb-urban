@@ -14,6 +14,7 @@ import BackInShapev2 from '../pages/events/BackInShapev2';
 import BackInShapev2Detail from '../pages/events/BackInShapev2Detail';
 import BisPay from '../pages/events/proses/BisPay';
 import BisPayDetail from '../pages/events/proses/BisPayDetail';
+import {Rp288} from '../pages/events/rp288';
 import PersonalTrainer from '../pages/uaweb/personal-trainer/PersonalTrainer';
 import PersonalTrainerAdd from '../pages/uaweb/personal-trainer/PersonalTrainerAdd';
 import PersonalTrainerEdit from '../pages/uaweb/personal-trainer/PersonalTrainerEdit';
@@ -25,6 +26,7 @@ import FotoKelasEdit from '../pages/uaweb/foto-kelas/FotoKelasEdit';
 import SuccessStory from '../pages/uaweb/success-story/SuccessStory';
 import SuccessStoryAdd from '../pages/uaweb/success-story/SuccessStoryAdd';
 import SuccessStoryEdit from '../pages/uaweb/success-story/SuccessStoryEdit';
+import { Investment } from '../pages/franchise';
 
 function Router() {
   const location = useLocation();
@@ -62,6 +64,10 @@ function Router() {
             <Route index element={<Rp99k />} />
             <Route path=':id' element={<Rp99kDetail />} />
           </Route>
+          <Route path="288" >
+            <Route index element={<Rp288 />} />
+            {/* <Route path=':id' element={<Rp99kDetail />} /> */}
+          </Route>
         </Route>
 
         <Route path="/uaweb" >
@@ -80,6 +86,14 @@ function Router() {
             <Route path='add' element={<SuccessStoryAdd />} />
             <Route path=':id' element={<SuccessStoryEdit />} />
           </Route>
+        </Route>
+
+        <Route path="/franchise" >
+          <Route index element={<Investment />} />
+          {/* <Route path="investment" >
+            <Route path='add' element={<PersonalTrainerAdd />} />
+            <Route path=':id' element={<PersonalTrainerEdit />} />
+          </Route> */}
         </Route>
         {/* <Route path="/role/edit" element={<RoleEdit />} /> */}
       </Routes>
